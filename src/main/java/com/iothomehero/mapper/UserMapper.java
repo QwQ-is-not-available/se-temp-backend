@@ -7,7 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper {
-    @Select("select * from user")  //用来测试 实际不使用
+    @Select("select * from user")  //用来测试 实际不使用 Used for testing, not actually used
     public List<User> getUserList();
 
     @Insert("insert into user(user_id, nickname, password, token) " +
