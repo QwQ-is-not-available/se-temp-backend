@@ -51,6 +51,7 @@ public class DeviceController {
     @PutMapping("/rename_device/{id}")
     public Result rename_device(@PathVariable Integer id, @RequestBody Device device) {
         log.info("To change the name of the device:{}",device.getName());
+        Integer res = deviceMapper.rename_device(id, device.getName());
         return Result.success(device.getName());
     }
 
