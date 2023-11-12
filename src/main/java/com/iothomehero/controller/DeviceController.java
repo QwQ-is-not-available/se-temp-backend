@@ -48,4 +48,15 @@ public class DeviceController {
         return Result.success(deviceList);
     }
 
+    @PutMapping("/rename_device/{id}")
+    public Result rename_device(@PathVariable Integer id, @RequestBody Device device) {
+        log.info("To change the name of the device:{}",device.getName());
+        return Result.success(device.getName());
+    }
+
+    @GetMapping("/status/{id}")
+    public Result switch_status(@PathVariable Integer id) {
+        return Result.success(deviceMapper.switch_status(id));
+    }
+
 }

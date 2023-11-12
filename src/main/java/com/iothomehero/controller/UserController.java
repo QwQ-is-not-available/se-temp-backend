@@ -47,4 +47,5 @@ public class UserController {
             // return value may be used to determine exceptional cases
         return Result.success(user.getNickname());
     }
+
 }

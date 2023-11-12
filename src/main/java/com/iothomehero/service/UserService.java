@@ -13,4 +13,5 @@ public interface UserService {
     public Integer login(User user);
 
     public Integer change_nickname(User user);
+
 }
