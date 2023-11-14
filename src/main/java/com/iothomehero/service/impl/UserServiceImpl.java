@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer change_nickname(User user) {
-        return userMapper.change_nickanme(user);
+        return userMapper.change_nickname(user);
     }
 
 }

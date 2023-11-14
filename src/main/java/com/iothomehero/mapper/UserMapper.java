@@ -19,6 +19,6 @@ public interface UserMapper {
     public Integer login(User user);
 
     @Update("update user set nickname=#{nickname} where user_id=#{userId}")
-    public Integer change_nickanme(User user);
+    public Integer change_nickname(User user);
 
 }
