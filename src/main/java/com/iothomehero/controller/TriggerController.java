@@ -3,6 +3,7 @@ package com.iothomehero.controller;
 import com.iothomehero.mapper.TriggerMapper;
 import com.iothomehero.pojo.Result;
 import com.iothomehero.pojo.entity.trigger.TriLocation;
+import com.iothomehero.pojo.entity.trigger.TriPosture;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,13 @@ public class TriggerController {
         triggerMapper.triLocationAdd(triLocation);
         log.info("add a location trigger:"+triLocation.getId());
         return Result.success(triLocation.getId());
+    }
+
+    @PostMapping("/pos_add")
+    public Result addTriPosture(@RequestBody TriPosture triPosture){
+        triggerMapper.triPostureAdd(triPosture);
+        log.info("add a posture trigger:"+triPosture.getId());
+        return Result.success(triPosture.getId());
     }
 
 }
