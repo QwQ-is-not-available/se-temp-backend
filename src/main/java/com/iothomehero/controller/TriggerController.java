@@ -2,6 +2,7 @@ package com.iothomehero.controller;
 
 import com.iothomehero.mapper.TriggerMapper;
 import com.iothomehero.pojo.Result;
+import com.iothomehero.pojo.entity.Routine;
 import com.iothomehero.pojo.entity.trigger.TriLocation;
 import com.iothomehero.pojo.entity.trigger.TriPosture;
 import lombok.extern.slf4j.Slf4j;
@@ -32,5 +33,35 @@ public class TriggerController {
         log.info("add a posture trigger:"+triPosture.getId());
         return Result.success(triPosture.getId());
     }
+
+    @PostMapping("/get")
+    public Result getTrigger(@RequestBody Routine routine){
+        // just need triggerType and triggerId in routine
+        switch(routine.getTrigger_type()){
+            case 1:
+                TriLocation triLocation = triggerMapper.getTriLocation(routine);
+                if(triLocation!=null){
+                    return Result.success(triLocation);
+                }else {
+                    return Result.error("no match");
+                }
+            case 2:
+                TriPosture triPosture = triggerMapper.getTriPosture(routine);
+                if(triPosture!=null){
+                    return Result.success(triPosture);
+                }else {
+                    return Result.error("no match");
+                }
+            case 3:
+                //break;
+            case 4:
+                break;
+            default:
+                return Result.error("no match");
+        }
+        return Result.success();
+    }
+
+
 
 }
