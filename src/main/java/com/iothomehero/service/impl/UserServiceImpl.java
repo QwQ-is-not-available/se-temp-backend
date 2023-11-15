@@ -28,4 +28,7 @@ public class UserServiceImpl implements UserService {
         return userMapper.change_nickname(user);
     }
 
+    @Override
+    public Integer push_setting(User user) { return userMapper.push_setting(user);}
+
 }

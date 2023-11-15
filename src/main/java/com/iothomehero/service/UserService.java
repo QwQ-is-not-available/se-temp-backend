@@ -10,4 +10,5 @@ public interface UserService {
     public void userSignup(User user);
     public Integer login(User user);
     public Integer change_nickname(User user);
+    public Integer push_setting(User user);
 }

@@ -47,4 +47,17 @@ public class UserController {
             // return value may be used to determine exceptional cases
         return Result.success(user.getNickname());
     }
+
+    @PutMapping("push_setting")
+    public Result push_setting(@RequestBody User user){
+        log.info("Toggling push notification setting for user with id:{}", user.getId());
+        user.setPushSetting((short) (user.getPushSetting() == 1 ? 0 : 1));
+        Integer res = userService.push_setting(user);
+        if (res == 1) {
+            return Result.success(user.getPushSetting());
+        } else {
+            return Result.error("Fail to toggle push setting");
+        }
+
+    }
 }

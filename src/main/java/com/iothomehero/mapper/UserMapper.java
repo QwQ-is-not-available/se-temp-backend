@@ -21,4 +21,7 @@ public interface UserMapper {
     @Update("update user set nickname=#{nickname} where user_id=#{userId}")
     public Integer change_nickname(User user);
 
+    @Update("update user set push_setting=#{pushSetting} where id=#{id}")
+    public Integer push_setting(User user);
+
 }
