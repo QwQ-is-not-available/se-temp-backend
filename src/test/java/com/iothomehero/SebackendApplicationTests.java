@@ -37,4 +37,9 @@ class SebackendApplicationTests {
         triggerMapper.triLocationAdd(triLocation);
     }
 
+    @Test
+    public void testtime(){
+
+    }
+
 }
