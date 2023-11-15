@@ -3,8 +3,6 @@ package com.iothomehero.controller;
 import com.iothomehero.mapper.DeviceMapper;
 import com.iothomehero.pojo.Result;
 import com.iothomehero.pojo.entity.Device;
-import com.iothomehero.service.DeviceService;
-import com.iothomehero.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
