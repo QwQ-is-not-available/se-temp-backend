@@ -19,6 +19,6 @@ public interface RoutineMapper {
     public List<Routine> get_all_routine(String userId);
     @Update("UPDATE routine SET name = #{name} WHERE id = #{id}")
     public Integer rename_routine(Routine routine);
-    /*@Update("UPDATE routine SET on_off = #{onOff} WHERE id = #{id}")
-    public Integer change_status(Routine routine);*/
+    @Update("UPDATE routine SET on_off = #{onOff} WHERE id = #{id}")
+    public Integer change_status(Routine routine);
 }

@@ -50,7 +50,7 @@ public class RoutineController {
         return Result.success(routine.getName());
     }
 
-   /* @PutMapping("/change_status")
+    @PutMapping("/change_status")
     public Result change_status(@RequestBody Routine routine) {
         log.info("To change the status of the routine:{}", routine.getOnOff());
         routine.setOnOff((short) (routine.getOnOff() == 0 ? 1 : 0));
@@ -60,6 +60,5 @@ public class RoutineController {
         }else {
             return Result.error("fail to toggle push setting");
         }
-    }*/
-
+    }
 }

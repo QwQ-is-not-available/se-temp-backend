@@ -25,7 +25,7 @@ public interface TriggerMapper {
     @Options(keyProperty = "id", useGeneratedKeys = true)
     @Insert("insert into tri_assistant(command) values (#{command})")
     public void triAssistantAdd(TriAssistant triAssistant);
-    
+
     @Options(keyProperty = "id", useGeneratedKeys = true)
     @Insert("insert into tri_time(time) values (#{time});")
     public void triTimeAdd(TriTime triTime);
