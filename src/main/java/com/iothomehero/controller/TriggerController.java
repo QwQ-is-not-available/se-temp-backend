@@ -45,7 +45,7 @@ public class TriggerController {
     @PostMapping("/get")
     public Result getTrigger(@RequestBody Routine routine){
         // just need triggerType and triggerId in routine
-        switch(routine.getTrigger_type()){
+        switch(routine.getTriggerType()){
             case 1:
                 TriLocation triLocation = triggerMapper.getTriLocation(routine);
                 if(triLocation!=null){

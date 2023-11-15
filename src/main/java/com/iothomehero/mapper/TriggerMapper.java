@@ -24,13 +24,13 @@ public interface TriggerMapper {
     @Insert("insert into tri_assistant(command) values (#{command})")
     public void triAssistantAdd(TriAssistant triAssistant);
 
-    @Select("select id, mode, longitude, latitude from tri_location where id=#{trigger_id};")
+    @Select("select id, mode, longitude, latitude from tri_location where id=#{triggerId};")
     public TriLocation getTriLocation(Routine routine);
 
-    @Select("select id, mode, coordinate_x, coordinate_y, ip from tri_posture where id=#{trigger_id};")
+    @Select("select id, mode, coordinate_x, coordinate_y, ip from tri_posture where id=#{triggerId};")
     public TriPosture getTriPosture(Routine routine);
 
-    @Select("select id, command from tri_assistant where id=#{trigger_id}")
+    @Select("select id, command from tri_assistant where id=#{triggerId}")
     public TriAssistant getTriAssistant(Routine routine);
 
 }

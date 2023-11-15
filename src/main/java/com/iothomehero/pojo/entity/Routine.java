@@ -11,7 +11,7 @@ public class Routine {
     private Integer id;
     private String userId;
     private String name;
-    private Short on_off;
-    private Short trigger_type;
-    private Integer trigger_id;
+    private Short onOff;
+    private Short triggerType;
+    private Integer triggerId;
 }
