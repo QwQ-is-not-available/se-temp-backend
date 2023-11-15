@@ -55,9 +55,21 @@ public class DeviceController {
         return Result.success(device.getName());
     }
 
-    @GetMapping("/status/{id}")
+   /* @GetMapping("/status/{id}")
     public Result switch_status(@PathVariable Integer id) {
         return Result.success(deviceMapper.switch_status(id));
-    }
+    }*/
 
+    @PutMapping("/change_status/{id}")
+    public Result change_status(@PathVariable Integer id, @RequestBody Device device) {
+        if (device.getSwitchStatus() >=0 && device.getSwitchStatus() <= 100) {
+            log.info("To change the switch status:{}", device.getSwitchStatus());
+            Integer res = deviceMapper.change_status(id, device.getSwitchStatus());
+            return Result.success(device.getSwitchStatus());
+        }
+        else {
+            log.error("Wrong input for switch status:{}", device.getSwitchStatus());
+            return Result.error("Wrong input");
+        }
+    }
 }

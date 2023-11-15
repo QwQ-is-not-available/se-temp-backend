@@ -3,7 +3,6 @@ package com.iothomehero.controller;
 import com.iothomehero.mapper.RoutineMapper;
 import com.iothomehero.pojo.Result;
 //import com.iothomehero.pojo.entity.Device;
-import com.iothomehero.pojo.entity.Device;
 import com.iothomehero.pojo.entity.Routine;
 //import com.iothomehero.service.RoutineService;
 import lombok.extern.slf4j.Slf4j;
