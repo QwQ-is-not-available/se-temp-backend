@@ -43,10 +43,10 @@ public class RoutineController {
         List<Routine> routineList = routineMapper.get_all_routine(userId);
         return Result.success(routineList);
     }
-    @PutMapping("/rename_routine/{id}")
-    public Result rename_routine(@PathVariable Integer id, @RequestBody Routine routine) {
+    @PutMapping("/rename_routine")
+    public Result rename_routine(@RequestBody Routine routine) {
         log.info("To change the name of the routine:{}",routine.getName());
-        Integer res = routineMapper.rename_routine(id, routine.getName());
+        Integer res = routineMapper.rename_routine(routine);
         return Result.success(routine.getName());
     }
 

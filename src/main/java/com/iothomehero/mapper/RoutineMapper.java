@@ -17,7 +17,8 @@ public interface RoutineMapper {
     @Select("select id, user_id, name, on_off, trigger_type, trigger_id " +
             "from routine where user_id=#{userId};")
     public List<Routine> get_all_routine(String userId);
+
     @Update("UPDATE routine SET name = #{name} WHERE id = #{id}")
-    public Integer rename_routine(@Param("id") Integer id, @Param("name") String name);
+    public Integer rename_routine(Routine routine);
 
 }

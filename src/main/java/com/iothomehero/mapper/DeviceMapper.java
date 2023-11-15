@@ -20,13 +20,13 @@ public interface DeviceMapper {
     @Delete("delete from device where id=#{id}")
     public Integer delete_device(Integer id);
 
-    @Update("UPDATE device SET name = #{deviceName} WHERE id = #{id}")
-    public Integer rename_device(@Param("id") Integer id, @Param("deviceName") String deviceName);
+    @Update("UPDATE device SET name = #{name} WHERE id = #{id}")
+    public Integer rename_device(Device device);
 
     //@Select("SELECT switch_status FROM device WHERE id = #{id}")
     //Integer switch_status(@Param("id") Integer id);
 
     @Update("UPDATE device SET switch_status = #{switchStatus} WHERE id = #{id}")
-    public Integer change_status(@Param("id") Integer id, @Param("switchStatus") Short switchStatus);
+    public Integer change_status(Device device);
 
 }

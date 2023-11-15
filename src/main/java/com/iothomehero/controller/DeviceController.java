@@ -48,23 +48,18 @@ public class DeviceController {
         return Result.success(deviceList);
     }
 
-    @PutMapping("/rename_device/{id}")
-    public Result rename_device(@PathVariable Integer id, @RequestBody Device device) {
+    @PutMapping("/rename_device")
+    public Result rename_device(@RequestBody Device device) {
         log.info("To change the name of the device:{}",device.getName());
-        Integer res = deviceMapper.rename_device(id, device.getName());
+        Integer res = deviceMapper.rename_device(device);
         return Result.success(device.getName());
     }
 
-   /* @GetMapping("/status/{id}")
-    public Result switch_status(@PathVariable Integer id) {
-        return Result.success(deviceMapper.switch_status(id));
-    }*/
-
-    @PutMapping("/change_status/{id}")
-    public Result change_status(@PathVariable Integer id, @RequestBody Device device) {
+    @PutMapping("/change_status")
+    public Result change_status(@RequestBody Device device) {
         if (device.getSwitchStatus() >=0 && device.getSwitchStatus() <= 100) {
             log.info("To change the switch status:{}", device.getSwitchStatus());
-            Integer res = deviceMapper.change_status(id, device.getSwitchStatus());
+            Integer res = deviceMapper.change_status(device);
             return Result.success(device.getSwitchStatus());
         }
         else {

@@ -3,6 +3,7 @@ package com.iothomehero.controller;
 import com.iothomehero.mapper.TriggerMapper;
 import com.iothomehero.pojo.Result;
 import com.iothomehero.pojo.entity.Routine;
+import com.iothomehero.pojo.entity.trigger.TriAssistant;
 import com.iothomehero.pojo.entity.trigger.TriLocation;
 import com.iothomehero.pojo.entity.trigger.TriPosture;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +35,13 @@ public class TriggerController {
         return Result.success(triPosture.getId());
     }
 
+    @PostMapping("/assi_add")
+    public Result addTriAssistant(@RequestBody TriAssistant triAssistant){
+        triggerMapper.triAssistantAdd(triAssistant);
+        log.info("add a assistant trigger:"+triAssistant.getId());
+        return Result.success(triAssistant.getId());
+    }
+
     @PostMapping("/get")
     public Result getTrigger(@RequestBody Routine routine){
         // just need triggerType and triggerId in routine
@@ -53,7 +61,12 @@ public class TriggerController {
                     return Result.error("no match");
                 }
             case 3:
-                //break;
+                TriAssistant triAssistant = triggerMapper.getTriAssistant(routine);
+                if(triAssistant!=null){
+                    return Result.success(triAssistant);
+                }else {
+                    return Result.error("no match");
+                }
             case 4:
                 break;
             default:
