@@ -6,6 +6,7 @@ import com.iothomehero.pojo.entity.Routine;
 import com.iothomehero.pojo.entity.trigger.TriAssistant;
 import com.iothomehero.pojo.entity.trigger.TriLocation;
 import com.iothomehero.pojo.entity.trigger.TriPosture;
+import com.iothomehero.pojo.entity.trigger.TriTime;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,6 +43,13 @@ public class TriggerController {
         return Result.success(triAssistant.getId());
     }
 
+    @PostMapping("/time_add")
+    public Result addTriTime(@RequestBody TriTime triTime){
+        triggerMapper.triTimeAdd(triTime);
+        log.info("add a time trigger:"+triTime.getId());
+        return Result.success(triTime.getId());
+    }
+
     @PostMapping("/get")
     public Result getTrigger(@RequestBody Routine routine){
         // just need triggerType and triggerId in routine
@@ -68,11 +76,16 @@ public class TriggerController {
                     return Result.error("no match");
                 }
             case 4:
-                break;
+                TriTime triTime = triggerMapper.getTriTime(routine);
+                if(triTime!=null){
+                    return Result.success(triTime);
+                }else {
+                    return Result.error("no match");
+                }
             default:
                 return Result.error("no match");
         }
-        return Result.success();
+        //return Result.success();
     }
 
 
