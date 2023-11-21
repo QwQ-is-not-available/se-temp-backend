@@ -7,10 +7,11 @@ import com.iothomehero.pojo.entity.action.ActTime;
 import com.iothomehero.pojo.entity.action.Action;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -35,5 +36,14 @@ public class ActionController {
         return Result.success(actTime.getId());
     }
 
-
+    @GetMapping("/get_all_action/{userId}")
+    public Result get_all_action(@PathVariable String userId, @RequestBody Action action) {
+        List<ActDevice> actDeviceList = actionMapper.getActDevice(userId, action.getRoutineId());
+        List<ActTime> actTimeList = actionMapper.getActTime(userId, action.getRoutineId());
+        log.info("Action list for user_id: " + userId);
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("actDevices", actDeviceList);
+        resultMap.put("actTimes", actTimeList);
+        return Result.success(resultMap);
+    }
 }
