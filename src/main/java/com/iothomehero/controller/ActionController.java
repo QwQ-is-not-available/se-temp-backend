@@ -47,14 +47,14 @@ public class ActionController {
         return Result.success(resultMap);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public Result delete(@PathVariable Integer id) {
-        Integer res = actionMapper.deleteAction(id);
-        log.info("number:"+res);
-        if(res==1){
-            return Result.success();
-        }else{
-            return Result.error();
-        }
-    }
+//    @DeleteMapping("/delete/{id}")
+//    public Result delete(@PathVariable Integer id) {
+//        Integer res = actionMapper.deleteAction(id);
+//        log.info("number:"+res);
+//        if(res==1){
+//            return Result.success();
+//        }else{
+//            return Result.error();
+//        }
+//    }
 }
