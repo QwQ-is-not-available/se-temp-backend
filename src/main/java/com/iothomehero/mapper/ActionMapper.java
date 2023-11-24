@@ -27,5 +27,4 @@ public interface ActionMapper {
 
     @Select("SELECT * FROM act_time WHERE id IN (SELECT action_id FROM action WHERE routine_id IN (SELECT id FROM routine WHERE user_id = #{userId}) AND action_type = 2)")
     List<ActTime> getActTime(@Param("userId") String userId, @Param("routineId") Integer routineId);
-
 }

@@ -10,7 +10,7 @@ import java.util.List;
 public interface RoutineMapper {
     @Options(keyProperty = "id",useGeneratedKeys = true)
     @Insert("insert into routine(user_id, name, trigger_type, trigger_id) " +
-            "values(#{userId},#{name},#{trigger_type},#{trigger_id});")
+            "values(#{userId},#{name},#{triggerType},#{triggerId});")
     public void add_routine(Routine routine);
     @Delete("delete from routine where id=#{id}")
     public Integer delete_routine(Integer id);
