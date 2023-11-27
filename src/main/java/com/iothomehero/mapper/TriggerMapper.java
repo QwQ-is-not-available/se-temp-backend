@@ -19,7 +19,7 @@ public interface TriggerMapper {
     public void triLocationAdd(TriLocation triLocation);
 
     @Options(keyProperty = "id",useGeneratedKeys = true)
-    @Insert("insert into tri_posture(mode, coordinate_x, coordinate_y, ip) values (#{mode},#{coordinateX},#{coordinateY},#{ip});")
+    @Insert("insert into tri_posture(mode, left_top_x, left_top_y, right_bottom_x, right_bottom_y, ip) values (#{mode},#{leftTopX},#{leftTopY},#{rightBottomX},#{rightBottomY},#{ip});")
     public void triPostureAdd(TriPosture triPosture);
 
     @Options(keyProperty = "id", useGeneratedKeys = true)
@@ -31,16 +31,16 @@ public interface TriggerMapper {
     public void triTimeAdd(TriTime triTime);
 
     //get
-    @Select("select id, mode, longitude, latitude from tri_location where id=#{trigger_id};")
+    @Select("select id, mode, longitude, latitude from tri_location where id=#{triggerId};")
     public TriLocation getTriLocation(Routine routine);
 
-    @Select("select id, mode, coordinate_x, coordinate_y, ip from tri_posture where id=#{trigger_id};")
+    @Select("select id, mode, left_top_x, left_top_y, right_bottom_x, right_bottom_y, ip from tri_posture where id=#{triggerId};")
     public TriPosture getTriPosture(Routine routine);
 
-    @Select("select id, command from tri_assistant where id=#{trigger_id}")
+    @Select("select id, command from tri_assistant where id=#{triggerId}")
     public TriAssistant getTriAssistant(Routine routine);
 
-    @Select("select id, time from tri_time where id=#{trigger_id};")
+    @Select("select id, time from tri_time where id=#{triggerId};")
     public TriTime getTriTime(Routine routine);
 
 }

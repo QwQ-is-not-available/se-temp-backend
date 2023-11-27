@@ -10,7 +10,11 @@ import lombok.NoArgsConstructor;
 public class TriPosture {
     private Integer id;
     private Short mode;
-    private Integer coordinateX;
-    private Integer coordinateY;
+
+    private Double  leftTopX;
+    private Double leftTopY;
+    private Double rightBottomX;
+    private Double rightBottomY;
+
     private String ip;
 }
