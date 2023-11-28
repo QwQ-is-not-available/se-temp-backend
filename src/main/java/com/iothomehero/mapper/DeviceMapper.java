@@ -9,8 +9,8 @@ import java.util.List;
 @Mapper
 public interface DeviceMapper {
     @Options(keyProperty = "id",useGeneratedKeys = true)
-    @Insert("insert into device(name, type, user_id, switch_status, text) " +
-            "values(#{name},#{type},#{userId},#{switchStatus},#{text});")
+    @Insert("insert into device(id,name, type, user_id, switch_status, text) " +
+            "values(#{id},#{name},#{type},#{userId},#{switchStatus},#{text});")
     public void add_device(Device device);
 
     @Select("select id, name, type, user_id, switch_status, text " +

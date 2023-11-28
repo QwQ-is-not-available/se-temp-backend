@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class ActDevice {
     private Integer id;
     private Integer routineId;
-    private Integer deviceId;
+    private Long deviceId;
     private Short switchStatus;
     private String text;
     private Integer order1;

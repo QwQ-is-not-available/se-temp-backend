@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Device {
-    private Integer id;
+    private Long id;
     private String name;
     private Short type;
     private String userId;
