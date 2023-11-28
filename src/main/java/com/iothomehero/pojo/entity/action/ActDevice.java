@@ -13,4 +13,5 @@ public class ActDevice {
     private Integer deviceId;
     private Short switchStatus;
     private String text;
+    private Integer order1;
 }

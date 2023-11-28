@@ -15,11 +15,11 @@ public interface ActionMapper {
     public void addAction(Action action);
 
     @Options(keyProperty = "id",useGeneratedKeys = true)
-    @Insert("insert into act_device(device_id, switch_status, text) VALUES (#{deviceId},#{switchStatus},#{text});")
+    @Insert("insert into act_device(device_id, switch_status, text, order1) VALUES (#{deviceId},#{switchStatus},#{text},#{order1});")
     public void addActDevice(ActDevice actDevice);
 
     @Options(keyProperty = "id",useGeneratedKeys = true)
-    @Insert("insert into act_time(time) values (#{time});")
+    @Insert("insert into act_time(time,order1) values (#{time},#{order1});")
     public void addActTime(ActTime actTime);
 
     @Select("SELECT * FROM act_device WHERE id IN (SELECT action_id FROM action WHERE routine_id IN (SELECT id FROM routine WHERE user_id = #{userId}) AND action_type = 1)")
