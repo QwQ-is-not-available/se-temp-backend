@@ -59,9 +59,4 @@ public class UserController {
             return Result.error("Fail to toggle push setting");
         }
     }
-
-    @PostMapping("/logout")
-    public Result logout() {
-        return Result.success();
-    }
 }
