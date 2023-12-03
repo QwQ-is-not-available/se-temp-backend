@@ -27,4 +27,14 @@ public interface ActionMapper {
 
     @Select("SELECT * FROM act_time WHERE id IN (SELECT action_id FROM action WHERE routine_id IN (SELECT id FROM routine WHERE user_id = #{userId}) AND action_type = 2)")
     List<ActTime> getActTime(@Param("userId") String userId, @Param("routineId") Integer routineId);
+
+    @Delete("delete from act_device where id=#{actionId};")
+    public void deleteActDevice(Action action);
+
+    @Delete("delete from act_time where id=#{actionId};")
+    public void deleteActTime(Action action);
+
+    @Delete("delete from action where action_type=#{actionType} and action_id=#{actionId};")
+    public Integer deleteAction(Action action);
+
 }

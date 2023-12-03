@@ -47,4 +47,23 @@ public class ActionController {
         return Result.success(resultMap);
     }
 
+    @DeleteMapping("/delete")
+    public Result deleteAction(@RequestBody Action action){
+        log.info("delete actionType:{}, actionId:{}",action.getActionType(),action.getActionId());
+        Integer res = actionMapper.deleteAction(action);
+        if(res==0){
+            return Result.error("no match");
+        }
+        switch (action.getActionType()){
+            case 1:
+                actionMapper.deleteActDevice(action);
+                return Result.success();
+            case 2:
+                actionMapper.deleteActTime(action);
+                return Result.success();
+            default:
+                return Result.error("no match");
+        }
+    }
+
 }
