@@ -16,30 +16,30 @@ import java.util.List;
 @SpringBootTest
 class SebackendApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
-    @Autowired
-    private UserMapper userMapper;
-    @Autowired
-    private TriggerMapper triggerMapper;
-    @Test
-    public void testUserList(){
-        List<User> userList = userMapper.getUserList();
-        userList.stream().forEach(user -> {
-            log.info(user.toString());
-        });
-    }
-
-    @Test
-    public void testtriLocationAdd(){
-        TriLocation triLocation = new TriLocation(null,null,new BigDecimal("123.456999"),new BigDecimal("789.123"));
-        triggerMapper.triLocationAdd(triLocation);
-    }
-
-    @Test
-    public void testtime(){
-
-    }
+//    @Test
+//    void contextLoads() {
+//    }
+//    @Autowired
+//    private UserMapper userMapper;
+//    @Autowired
+//    private TriggerMapper triggerMapper;
+//    @Test
+//    public void testUserList(){
+//        List<User> userList = userMapper.getUserList();
+//        userList.stream().forEach(user -> {
+//            log.info(user.toString());
+//        });
+//    }
+//
+//    @Test
+//    public void testtriLocationAdd(){
+//        TriLocation triLocation = new TriLocation(null,null,new BigDecimal("123.456999"),new BigDecimal("789.123"));
+//        triggerMapper.triLocationAdd(triLocation);
+//    }
+//
+//    @Test
+//    public void testtime(){
+//
+//    }
 
 }

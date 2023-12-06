@@ -1,4 +1,4 @@
-const LOCAL_IP_ADDRESS = "172.16.161.63"; // change it
+const LOCAL_IP_ADDRESS = "localhost"; // change it
 
 const getElement = id => document.getElementById(id);
 const [btnConnect, btnToggleVideo, btnToggleAudio, divRoomConfig, roomDiv, roomNameInput, localVideo, remoteVideo] = ["btnConnect",
@@ -22,7 +22,7 @@ const iceServers = {
 
 const streamConstraints = {audio: true, video: true};
 
-let socket = io.connect(`https://172.16.161.63`, {secure: true});
+let socket = io.connect(`https://localhost`, {secure: true});
 // let socket = io.connect("http://192.168.0.3:8000");
 
 btnToggleVideo.addEventListener("click", () => toggleTrack("video"));
