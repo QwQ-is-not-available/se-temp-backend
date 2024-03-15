@@ -1,2 +1,2 @@
 - 相比原来的添加了jwt，需要在postman的header里添加```token```项才能用
-  - Compared with the original version, jwt token has been added. You need to add the ```token``` item in the postman header to use it.
+  - Compared with the original version, jwt token has been added. You need to add the ```token``` item to the postman request header to use it.
