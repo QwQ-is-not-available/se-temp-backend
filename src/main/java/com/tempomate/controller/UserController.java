@@ -3,9 +3,13 @@ package com.tempomate.controller;
 import com.tempomate.pojo.Result;
 import com.tempomate.pojo.entity.User;
 import com.tempomate.service.UserService;
+import com.tempomate.utils.JwtUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Slf4j
@@ -21,6 +25,12 @@ public class UserController {
         return Result.success("hello world");
     }
 
+    @GetMapping ("/test_token")
+    public Result test1token(){
+        log.info("hello world with token");
+        return Result.success("hello world with token");
+    }
+
     @PostMapping("/signup")
     public Result signup(@RequestBody User user){
         log.info("new user signup:{}",user.getUserId());
@@ -33,7 +43,11 @@ public class UserController {
         log.info("user try login:{}, password:{}",user.getUserId(),user.getPassword());
         Integer res = userService.login(user);
         if(res==1){
-            return Result.success();
+            Map<String, Object> claims = new HashMap<>();
+            claims.put("userId",user.getUserId());
+
+            String jwt = JwtUtils.generateJwt(claims);
+            return Result.success(jwt);
         }else{
             return Result.error();
         }
