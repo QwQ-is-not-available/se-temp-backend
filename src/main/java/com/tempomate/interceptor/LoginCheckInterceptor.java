@@ -4,41 +4,60 @@ import com.alibaba.fastjson.JSONObject;
 import com.tempomate.pojo.Result;
 import com.tempomate.utils.JwtUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 @Slf4j
 @Component
 public class LoginCheckInterceptor implements HandlerInterceptor {
+
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     @Override
     public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
         log.info("Enter interceptor");
-        //获得请求头里的token Get the token in the request header
+        //获得请求头里的token  Get the token in the request header
         String jwt = req.getHeader("token");
 
-        //判断token是否为空 Determine whether the token is empty
+        //判断token是否为空  Determine whether the token is empty
         if(!StringUtils.hasLength(jwt)){
             log.info("request header token is empty");
             String notLogin = JSONObject.toJSONString(Result.error("not login"));
             resp.getWriter().write(notLogin);
             return false;
         }
-        //尝试解析jwt Try to parse jwt
+        //尝试解析jwt  Try to parse jwt
         try{
-            JwtUtils.parseJWT(jwt);
+            Map<String,Object> jwtMap = JwtUtils.parseJWT(jwt);
+            String userId = (String)jwtMap.get("userId");
+            log.info("userid in jwt:{}",userId);
+//            log.info("jwt         :"+jwt);
+//            log.info("jwt in redis:"+redisTemplate.opsForValue().get(userId));
+
+            //验证是否和redis里的一致  Verify whether it is consistent with the token in redis
+            if(!redisTemplate.opsForValue().get(userId).equals(jwt)){
+                throw new Exception("token is inconsistent");
+            }
+
         }catch (Exception e){
+            log.info("Exception: "+e.getMessage());
             e.printStackTrace();
+
             log.info("Failed to parse token, not login");
             String notLogin = JSONObject.toJSONString(Result.error("not login"));
             resp.getWriter().write(notLogin);
             return false;
 
         }
-        //放行 release
+        //放行  release
         log.info("Token qualified");
         return true;
     }

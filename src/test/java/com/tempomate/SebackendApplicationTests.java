@@ -11,12 +11,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @SpringBootTest
@@ -63,6 +65,17 @@ class SebackendApplicationTests {
 //                .parseClaimsJws("")
 //                .getBody();
 //        System.out.println(claims);
+//    }
+
+//    @Autowired
+//    private RedisTemplate redisTemplate;
+//
+//    @Test
+//    public void testRedisString(){
+//        redisTemplate.opsForValue().set("aaaa","abcdef456",1, TimeUnit.MINUTES);
+//        String out1 = (String)redisTemplate.opsForValue().get("aaaa");
+//        System.out.println(out1==null);
+//        System.out.println(out1);
 //    }
 
 }

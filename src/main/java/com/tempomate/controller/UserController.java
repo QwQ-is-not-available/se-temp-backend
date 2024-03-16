@@ -6,10 +6,12 @@ import com.tempomate.service.UserService;
 import com.tempomate.utils.JwtUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 
 @Slf4j
@@ -19,6 +21,10 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     @GetMapping ("/test")
     public Result test1(){
         log.info("hello world");
@@ -45,8 +51,11 @@ public class UserController {
         if(res==1){
             Map<String, Object> claims = new HashMap<>();
             claims.put("userId",user.getUserId());
-
+            //生成jwt
             String jwt = JwtUtils.generateJwt(claims);
+            //存进redis
+            redisTemplate.opsForValue().set(user.getUserId(),jwt,2, TimeUnit.HOURS);
+
             return Result.success(jwt);
         }else{
             return Result.error();
