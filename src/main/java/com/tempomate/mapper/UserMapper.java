@@ -10,6 +10,9 @@ public interface UserMapper {
     @Select("select * from user")  //用来测试 实际不使用 Used for testing, not actually used
     public List<User> getUserList();
 
+    @Select("SELECT token FROM user WHERE user_id = #{userId}")  //性能测试用的，需要数据库手动写入token
+    public String getUserToken(String userId);
+
     @Insert("insert into user(user_id, nickname, password, token) " +
             "values (#{userId},#{nickname},#{password},#{token});")
     public void insertUser(User user);
